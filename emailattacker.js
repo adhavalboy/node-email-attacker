@@ -5,6 +5,11 @@ Dhavalkumar Prajapati
 */
 
 var nodemailer = require('nodemailer'); // npm lib
+var program = require('commander'); // npm lib https://github.com/tj/commander.js
+program
+  .version('0.1.0')
+  .option('-c, --count', 'Number of emails to send', parseInt, 100)
+  .parse(process.argv);
 var traspoter = nodemailer.createTransport({
     service: 'gmail',//name the mail server which are using
     auth: {
@@ -26,7 +31,7 @@ var mailOptions = {
     text:'text data',
 };
 // this loop send 100 mail in a minute
-for(var i=0;i<100;i++){
+for(var i=0;i<program.count;i++){
     var randomIndex = Math.floor((Math.random() * (bodyData.length-1)) + 0);
     traspoter.sendMail(Object.assign({}, mailOptions, {text: bodyData[randomIndex]}),function(error, info){
         if (error){
