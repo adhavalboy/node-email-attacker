@@ -9,4 +9,7 @@ To install nodemailer lib run  below command
 
 To run attack type 
 
-`node nodeattacker.js`
+`node emailattacker.js -c "numner of email attack" `
+
+example: 
+`node emailattacker.js -c 51`
